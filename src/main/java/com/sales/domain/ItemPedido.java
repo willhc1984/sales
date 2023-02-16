@@ -3,6 +3,7 @@ package com.sales.domain;
 import java.io.Serializable;
 import java.util.Objects;
 
+import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
@@ -11,7 +12,8 @@ import jakarta.persistence.Table;
 public class ItemPedido implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
-
+	
+	@EmbeddedId
 	private ItemPedidoPK id = new ItemPedidoPK();
 	
 	private Double desconto;
