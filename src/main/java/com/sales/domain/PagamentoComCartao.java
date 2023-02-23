@@ -2,7 +2,7 @@ package com.sales.domain;
 
 import com.sales.domain.enums.EstadoPagamento;
 
-import jakarta.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
 public class PagamentoComCartao extends Pagamento{
