@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.sales.domain.Categoria;
 import com.sales.domain.Cidade;
@@ -19,6 +20,7 @@ import com.sales.domain.PagamentoComBoleto;
 import com.sales.domain.PagamentoComCartao;
 import com.sales.domain.Pedido;
 import com.sales.domain.Produto;
+import com.sales.domain.UserModel;
 import com.sales.domain.enums.EstadoPagamento;
 import com.sales.domain.enums.TipoCliente;
 import com.sales.repository.CategoriaRepository;
@@ -30,6 +32,7 @@ import com.sales.repository.ItemPedidoRepository;
 import com.sales.repository.PagamentoRepository;
 import com.sales.repository.PedidoRepository;
 import com.sales.repository.ProdutoRepository;
+import com.sales.repository.UserRepository;
 
 @SpringBootApplication
 public class SalesApplication implements CommandLineRunner{
@@ -56,6 +59,8 @@ public class SalesApplication implements CommandLineRunner{
 	private PedidoRepository pedidoRepository;
 	@Autowired
 	private ItemPedidoRepository itemPedidoRepository;
+	@Autowired
+	private UserRepository userRepository;
 
 	@Override
 	public void run(String... args) throws Exception {
@@ -136,6 +141,10 @@ public class SalesApplication implements CommandLineRunner{
 		p3.getItens().addAll(Arrays.asList(ip2));
 		
 		itemPedidoRepository.saveAll(Arrays.asList(ip1, ip2, ip3));
+		
+//		UserModel u1 = new UserModel(null, "user", new BCryptPasswordEncoder().encode("123"));
+//		UserModel u2 = new UserModel(null, "maria", new BCryptPasswordEncoder().encode("123"));
+//		userRepository.saveAll(Arrays.asList(u1, u2));
 		
 	}
 
