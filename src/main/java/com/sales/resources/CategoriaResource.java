@@ -1,5 +1,6 @@
 package com.sales.resources;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class CategoriaResource {
 	public ResponseEntity<Object> buscarPorId(@PathVariable Long id){
 		Optional<Categoria> categoriaOptional = categoriaService.buscarPorId(id);
 		if(categoriaOptional.isEmpty()) {
-			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Categoria não encontrada! " + id, System.currentTimeMillis());
+			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Categoria não encontrada! " + id, LocalDate.now());
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(categoriaOptional.get());

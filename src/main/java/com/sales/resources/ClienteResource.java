@@ -1,5 +1,6 @@
 package com.sales.resources;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class ClienteResource {
 	public ResponseEntity<Object> buscarPorId(@PathVariable Long id){
 		Optional<Cliente> clienteOptional = clienteService.buscarPorId(id);
 		if(clienteOptional.isEmpty()) {
-			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Cliente não encontrada! " + id, System.currentTimeMillis());
+			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Cliente não encontrada! " + id, LocalDate.now());
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(clienteOptional.get());

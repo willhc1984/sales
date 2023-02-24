@@ -1,6 +1,7 @@
 package com.sales.resources.exception;
 
 import java.io.Serializable;
+import java.time.LocalDate;
 
 public class StandardError implements Serializable{
 
@@ -8,13 +9,13 @@ public class StandardError implements Serializable{
 	
 	private Integer status;
 	private String msg;
-	private Long timeStamp;
+	private LocalDate timeStamp;
 	
-	public StandardError(Integer status, String msg, Long timeStamp) {
+	public StandardError(Integer status, String msg, LocalDate localDate) {
 		super();
 		this.status = status;
 		this.msg = msg;
-		this.timeStamp = timeStamp;
+		this.timeStamp = localDate;
 	}
 	
 	public Integer getStatus() {
@@ -29,10 +30,10 @@ public class StandardError implements Serializable{
 	public void setMsg(String msg) {
 		this.msg = msg;
 	}
-	public Long getTimeStamp() {
+	public LocalDate getTimeStamp() {
 		return timeStamp;
 	}
-	public void setTimeStamp(Long timeStamp) {
+	public void setTimeStamp(LocalDate timeStamp) {
 		this.timeStamp = timeStamp;
 	}
 	

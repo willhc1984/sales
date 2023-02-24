@@ -1,5 +1,6 @@
 package com.sales.resources;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,7 +32,7 @@ public class PedidoResource {
 	public ResponseEntity<Object> buscarPorId(@PathVariable Long id){
 		Optional<Pedido> pedidoOptional = pedidoService.buscarPorId(id);
 		if(pedidoOptional.isEmpty()) {
-			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Pedido não encontrado! " + id, System.currentTimeMillis());
+			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Pedido não encontrado! " + id, LocalDate.now());
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(pedidoOptional.get());

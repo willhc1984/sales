@@ -1,5 +1,6 @@
 package com.sales.resources;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,7 +34,7 @@ public class EstadoResource {
 	public ResponseEntity<Object> buscarPorId(@PathVariable Long id){
 		Optional<Estado> estadoOptional = estadoService.buscarPorId(id);
 		if(estadoOptional.isEmpty()) {
-			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Estado não encontrado! " + id, System.currentTimeMillis());
+			StandardError err = new StandardError(HttpStatus.NOT_FOUND.value(), "Estado não encontrado! " + id, LocalDate.now());
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(estadoOptional.get());
