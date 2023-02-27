@@ -24,4 +24,13 @@ public class CategoriaService {
 		return categoriaRepository.findAll();
 	}
 
+	public Categoria salvar(Categoria categoria) {
+		return categoriaRepository.save(categoria);
+	}
+
+	public void deletar(Categoria categoria) {
+		categoriaRepository.delete(categoria);
+		
+	}
+
 }

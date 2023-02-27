@@ -16,6 +16,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
+import javax.validation.constraints.Pattern.Flag;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -32,6 +33,8 @@ public class UserModel implements UserDetails, Serializable{
 	@NotBlank(message = "Campo obrigatório.")
 	private String username;
 	@NotBlank(message = "Campo obrigatório.")
+	@Pattern(regexp = "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$", 
+		message = "Senha deve conter 8 caracteres, maiusculas e minusculas e caracter especial")
 	private String password;
 	
 	@ManyToMany

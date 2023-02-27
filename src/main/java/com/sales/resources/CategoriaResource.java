@@ -4,15 +4,24 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
+import javax.transaction.Transactional;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.config.RepositoryNameSpaceHandler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sales.domain.Categoria;
+import com.sales.domain.UserModel;
 import com.sales.resources.exception.StandardError;
 import com.sales.service.CategoriaService;
 
@@ -36,6 +45,37 @@ public class CategoriaResource {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(err);
 		}
 		return ResponseEntity.status(HttpStatus.OK).body(categoriaOptional.get());
+	}
+	
+	@Transactional
+	@PostMapping
+	public ResponseEntity<Object> salvar(@Valid @RequestBody Categoria categoria){
+		return ResponseEntity.status(HttpStatus.OK).body(categoriaService.salvar(categoria));
+	}
+	
+	@PutMapping(value = "/{id}")
+	public ResponseEntity<Object> atualizar(@PathVariable Long id, @Valid @RequestBody Categoria categoria){
+		Optional<Categoria> categoriaOptional = categoriaService.buscarPorId(id);
+		if(!categoriaOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new StandardError(404, "Categoria não encontrada! " + id, LocalDate.now()));
+		}
+		
+		categoria.setId(categoriaOptional.get().getId());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(categoriaService.salvar(categoria));
+	}
+	
+	@Transactional
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<Object> deletar(@PathVariable Long id){
+		Optional<Categoria> categoriaOptional = categoriaService.buscarPorId(id);
+		if(!categoriaOptional.isPresent()) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(new StandardError(404,
+					"Categoria não encontrada! "+id, LocalDate.now()));
+		}
+		
+		categoriaService.deletar(categoriaOptional.get());
+		return ResponseEntity.status(HttpStatus.OK).build();
 	}
 
 }
