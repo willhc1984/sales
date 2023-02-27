@@ -27,4 +27,8 @@ public class EstadoService {
 		return estadoRepository.save(estado);
 	}
 
+	public void deletar(Estado estado) {
+		estadoRepository.delete(estado);
+	}
+
 }
