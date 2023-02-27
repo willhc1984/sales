@@ -14,6 +14,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -27,11 +29,13 @@ public class UserModel implements UserDetails, Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Campo obrigatório.")
 	private String username;
+	@NotBlank(message = "Campo obrigatório.")
 	private String password;
 	
 	@ManyToMany
-	@JoinTable(name = "tb_users_roles",
+	@JoinTable(name = "tb_users_roles", 
 			joinColumns =  @JoinColumn(name = "user_id"),
 			inverseJoinColumns = @JoinColumn(name = "role_id"))
 	private List<Role> roles = new ArrayList<>();
