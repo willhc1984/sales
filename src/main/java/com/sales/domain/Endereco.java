@@ -6,6 +6,7 @@ import java.util.Objects;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "tb_endereco")
@@ -16,10 +17,13 @@ public class Endereco implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Campos obrigatório")
 	private String logradouro;
 	private String numero;
 	private String complemento;
+	@NotBlank(message = "Campos obrigatório")
 	private String bairro;
+	@NotBlank(message = "Campos obrigatório")
 	private String cep;
 	
 	@JsonIgnore
