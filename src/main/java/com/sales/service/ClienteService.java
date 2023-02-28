@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.sales.domain.Categoria;
 import com.sales.domain.Cliente;
 import com.sales.repository.ClienteRepository;
 
@@ -23,6 +22,14 @@ public class ClienteService {
 	
 	public List<Cliente> buscarTodos() {
 		return clienteRepository.findAll();
+	}
+
+	public Cliente salvar(Cliente cliente) {
+		return clienteRepository.save(cliente);
+	}
+
+	public void deletar(Cliente cliente) {
+		clienteRepository.delete(cliente);
 	}
 
 }

@@ -97,11 +97,11 @@ public class SalesApplication implements CommandLineRunner{
 		estadoRepository.saveAll(Arrays.asList(e1, e2));
 		cidadeRepository.saveAll(Arrays.asList(c1, c2, c3));
 		
-		Cliente cli1 = new Cliente(null, "Maria", "maria@maria", "85785478", TipoCliente.PESSOAFISICA);
-		cli1.getTelefones().addAll(Arrays.asList("74580087", "789596478"));
+		Cliente cli1 = new Cliente(null, "Maria", "maria@maria", "33998259864", TipoCliente.PESSOAFISICA);
+		cli1.getTelefones().addAll(Arrays.asList("74580087", "33998259864"));
 		
-		Cliente cli2 = new Cliente(null, "José", "jose@jose", "1585471236", TipoCliente.PESSOAJURIDICA);
-		cli2.getTelefones().addAll(Arrays.asList("14785696", "1547856321", "1574589632"));
+		Cliente cli2 = new Cliente(null, "José", "jose@jose", "33998259864", TipoCliente.PESSOAJURIDICA);
+		cli2.getTelefones().addAll(Arrays.asList("14785696", "33998259864", "1574589632"));
 		
 		Endereco end1 = new Endereco(null, "rua 666", "358", "apto 305", "Jardim", "18070410", cli1, c2);
 		Endereco end2 = new Endereco(null, "rua blabla", "358", "apto 67", "Jardim", "18070410", cli1, c1);

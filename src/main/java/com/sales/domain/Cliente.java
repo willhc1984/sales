@@ -15,6 +15,11 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.br.CNPJ;
+import org.hibernate.validator.constraints.br.CPF;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sales.domain.enums.TipoCliente;
@@ -28,8 +33,11 @@ public class Cliente implements Serializable{
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	@NotBlank(message = "Campos obrigatório!")
 	private String nome;
+	@Email(message = "Email inválido!")
 	private String email;
+	@CPF @NotBlank(message = "Campo obrigatório!")
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
