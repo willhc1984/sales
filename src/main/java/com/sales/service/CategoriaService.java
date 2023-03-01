@@ -1,9 +1,10 @@
 package com.sales.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sales.domain.Categoria;
@@ -20,8 +21,8 @@ public class CategoriaService {
 		return categoriaOptional;
 	}
 	
-	public List<Categoria> buscarTodos() {
-		return categoriaRepository.findAll();
+	public Page<Categoria> buscarTodos(Pageable pageable) {
+		return categoriaRepository.findAll(pageable);
 	}
 
 	public Categoria salvar(Categoria categoria) {

@@ -1,9 +1,10 @@
 package com.sales.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sales.domain.Cliente;
@@ -20,8 +21,8 @@ public class ClienteService {
 		return clienteOptional;
 	}
 	
-	public List<Cliente> buscarTodos() {
-		return clienteRepository.findAll();
+	public Page<Cliente> buscarTodos(Pageable pageable) {
+		return clienteRepository.findAll(pageable);
 	}
 
 	public Cliente salvar(Cliente cliente) {

@@ -1,13 +1,13 @@
 package com.sales.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sales.domain.Cidade;
-import com.sales.domain.Estado;
 import com.sales.repository.CidadeRepository;
 
 @Service
@@ -16,8 +16,8 @@ public class CidadeService {
 	@Autowired
 	private CidadeRepository cidadeRepository;
 
-	public List<Cidade> buscarTodos() {
-		return cidadeRepository.findAll();
+	public Page<Cidade> buscarTodos(Pageable pageable) {
+		return cidadeRepository.findAll(pageable);
 	}
 	
 	public Optional<Cidade> buscarPorId(Long id){

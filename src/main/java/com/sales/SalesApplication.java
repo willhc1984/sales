@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import com.sales.domain.Categoria;
 import com.sales.domain.Cidade;
@@ -20,7 +19,6 @@ import com.sales.domain.PagamentoComBoleto;
 import com.sales.domain.PagamentoComCartao;
 import com.sales.domain.Pedido;
 import com.sales.domain.Produto;
-import com.sales.domain.UserModel;
 import com.sales.domain.enums.EstadoPagamento;
 import com.sales.domain.enums.TipoCliente;
 import com.sales.repository.CategoriaRepository;

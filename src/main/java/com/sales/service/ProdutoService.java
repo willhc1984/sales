@@ -1,9 +1,10 @@
 package com.sales.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sales.domain.Produto;
@@ -20,8 +21,8 @@ public class ProdutoService {
 		return produtoOptional;
 	}
 	
-	public List<Produto> buscarTodos() {
-		return produtoRepository.findAll();
+	public Page<Produto> buscarTodos(Pageable pageable) {
+		return produtoRepository.findAll(pageable);
 	}
 
 	public Produto salvar(Produto produto) {

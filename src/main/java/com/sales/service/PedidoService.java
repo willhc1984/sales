@@ -1,9 +1,10 @@
 package com.sales.service;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sales.domain.Pedido;
@@ -20,8 +21,17 @@ public class PedidoService {
 		return pedidoOptional;
 	}
 	
-	public List<Pedido> buscarTodos() {
-		return pedidoRepository.findAll();
+	public Page<Pedido> buscarTodos(Pageable pageable) {
+		return pedidoRepository.findAll(pageable);
+	}
+	
+	public Pedido salvar(Pedido pedido) {
+		return pedidoRepository.save(pedido);
+	}
+
+	public void deletar(Pedido pedido) {
+		pedidoRepository.delete(pedido);
+		
 	}
 
 }
